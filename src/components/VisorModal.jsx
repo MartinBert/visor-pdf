@@ -24,12 +24,10 @@ const VisorModal = ({ pdf, visorVisible, setVisorVisible }) => {
 
     useEffect(() => {
       if(!pdf) return;
-      const loadPdfInBlob = () => {
+      const loadPdfInBlob = async() => {
+        const credentials = await new AWS.Credentials(process.env.REACT_APP_AWS_ACCESS_KEY_ID, process.env.REACT_APP_AWS_SECRET_ACCESS_KEY, null);
         AWS.config.update({
-          credentials: {
-            accessKeyId: 'AKIA22JCCWWQJAB2T3ME',
-            secretAccessKey: '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'
-          },
+          credentials,
           region: 'us-east-2'
         })
         const s3 = new AWS.S3();
