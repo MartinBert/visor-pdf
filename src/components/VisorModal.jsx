@@ -27,8 +27,8 @@ const VisorModal = ({ pdf, visorVisible, setVisorVisible }) => {
       const loadPdfInBlob = () => {
         AWS.config.update({
           credentials: {
-            accessKeyId: 'AKIA22JCCWWQJAB2T3ME',
-            secretAccessKey: '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'
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
           },
           region: 'us-east-2'
         })
