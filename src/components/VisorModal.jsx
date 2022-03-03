@@ -25,8 +25,13 @@ const VisorModal = ({ pdf, visorVisible, setVisorVisible }) => {
     useEffect(() => {
       if(!pdf) return;
       const loadPdfInBlob = () => {
-        AWS.config.update({region: 'us-east-2'});
-        AWS.config.credentials = new AWS.Credentials({accessKeyId: "AKIA22JCCWWQJAB2T3ME",secretAccessKey: "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"})
+        AWS.config.update({
+          credentials: {
+            accessKeyId: 'AKIA22JCCWWQJAB2T3ME',
+            secretAccessKey: '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'
+          },
+          region: 'us-east-2'
+        })
         const s3 = new AWS.S3();
         const {bucket, key} = AmazonS3URI(pdf);
         s3.getObject({Bucket: bucket, Key: key.replaceAll('+', ' ')}, (error, item) => {
